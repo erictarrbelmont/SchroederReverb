@@ -9,3 +9,25 @@
 */
 
 #pragma once
+
+#include "AudioEffect.h"
+
+class ReverbEffect : public AudioEffect {
+public:
+    
+    ~ReverbEffect () override {
+        AudioEffect::~AudioEffect();
+    };
+    
+    float processSample(float x, const int c) override;
+    
+    void setTime(float delayTime);
+    
+    void setDiffusion(float newDiffusion);
+    
+private:
+    
+    float time;
+    float diffusion;
+    
+};

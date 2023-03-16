@@ -14,8 +14,8 @@
       <FILE id="cyXzyF" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="dcQQOw" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="Zbsavp" name="AudioEffect.cpp" compile="1" resource="0" file="../../../AET5430_SP23/ClassExamples/MyFirstPlugin/Source/AudioEffect.cpp"/>
-      <FILE id="QgUkZg" name="AudioEffect.h" compile="0" resource="0" file="../../../AET5430_SP23/ClassExamples/MyFirstPlugin/Source/AudioEffect.h"/>
+      <FILE id="osr7ei" name="AudioEffect.cpp" compile="1" resource="0" file="Source/AudioEffect.cpp"/>
+      <FILE id="GIIidD" name="AudioEffect.h" compile="0" resource="0" file="Source/AudioEffect.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
