@@ -21,13 +21,22 @@ public:
     
     float processSample(float x, const int c) override;
     
-    void setTime(float delayTime);
-    
-    void setDiffusion(float newDiffusion);
-    
 private:
     
-    float time;
-    float diffusion;
+//    FeedBackCombFilter fbcf1;
+//    FeedBackCombFilter fbcf2;
+//    FeedBackCombFilter fbcf3;
+//    FeedBackCombFilter fbcf4;
+//
+//    AllPassFilter apf1;
+//    AllPassFilter apf2;
+    
+    juce::String fbcf1;
+    juce::String fbcf2;
+    juce::String fbcf3;
+    juce::String fbcf4;
+
+    juce::String apf1;
+    juce::String apf2;
     
 };
