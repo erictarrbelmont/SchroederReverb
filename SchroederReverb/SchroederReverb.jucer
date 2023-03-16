@@ -4,6 +4,9 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" displaySplashScreen="1">
   <MAINGROUP id="Ccyu4L" name="SchroederReverb">
     <GROUP id="{73F5421F-A49D-143D-8BB0-46F48404D06F}" name="Source">
+      <FILE id="N2MdQC" name="ReverbEffect.cpp" compile="1" resource="0"
+            file="Source/ReverbEffect.cpp"/>
+      <FILE id="nBY2ak" name="ReverbEffect.h" compile="0" resource="0" file="Source/ReverbEffect.h"/>
       <FILE id="SEXRdx" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="W3UeLn" name="PluginProcessor.h" compile="0" resource="0"
