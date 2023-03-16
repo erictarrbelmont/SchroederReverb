@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="lDNP5u" name="SchroederReverb" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" displaySplashScreen="1">
   <MAINGROUP id="Ccyu4L" name="SchroederReverb">
     <GROUP id="{73F5421F-A49D-143D-8BB0-46F48404D06F}" name="Source">
       <FILE id="SEXRdx" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -11,10 +11,10 @@
       <FILE id="cyXzyF" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="dcQQOw" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="jkeWBI" name="FractionalDelay.cpp" compile="1" resource="0"
-            file="../../AET5895-SP20/ClassExamples/AlgoReverb/Source/FractionalDelay.cpp"/>
-      <FILE id="NPEnjF" name="FractionalDelay.hpp" compile="0" resource="0"
-            file="../../AET5895-SP20/ClassExamples/AlgoReverb/Source/FractionalDelay.hpp"/>
+      <FILE id="av0h3f" name="FractionalDelay.cpp" compile="1" resource="0"
+            file="Source/FractionalDelay.cpp"/>
+      <FILE id="CIq1lI" name="FractionalDelay.hpp" compile="0" resource="0"
+            file="Source/FractionalDelay.hpp"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
