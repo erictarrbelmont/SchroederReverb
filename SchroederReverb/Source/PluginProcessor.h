@@ -12,6 +12,7 @@
 #include <ReverbEffect.h>
 #include <FeedBackCombFilter.h>
 #include <AllPassFilter.h>
+#include "FractionalDelay.hpp"
 
 //==============================================================================
 /**
