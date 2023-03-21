@@ -115,6 +115,9 @@ void SchroederReverbAudioProcessorEditor::sliderValueChanged(juce::Slider* slide
 {
     if (slider == &timeKnob)
     {
+        // auto value = slider-> getValue();
+        // AudioProcessor.
+        
         audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 1
     }
     if (slider == &diffKnob)

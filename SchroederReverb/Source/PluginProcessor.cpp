@@ -96,8 +96,9 @@ void SchroederReverbAudioProcessor::prepareToPlay (double sampleRate, int sample
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     // reverb.prepareToPlay
-    // apf.prepareToPlay
-    // fbcf.prepareToPlay
+    // apf.prepareToPlay(sampleRate,SamplesPerBlock);
+    fbcf.prepareToPlay(sampleRate, samplesPerBlock);
+    
     
 }
 
@@ -147,6 +148,8 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
         buffer.clear (i, 0, buffer.getNumSamples());
     
     float decayTime;
+    .setDecayTime(decayTime)
+    
     float mix;
     float diffusion;
     float LPF;
@@ -191,6 +194,13 @@ void SchroederReverbAudioProcessor::setStateInformation (const void* data, int s
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    
+    
+}
+
+void SchroederReverbAudioProcessor::setDecayTime(int decayValue)
+{
+    decayTime = decayValue;
 }
 
 //==============================================================================
