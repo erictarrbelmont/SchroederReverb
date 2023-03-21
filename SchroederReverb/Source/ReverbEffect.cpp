@@ -21,4 +21,17 @@ float ReverbEffect::processSample(float x, const int c) {
     // TODO
     return 0.f;
     
+    
+}
+
+
+void ReverbEffect::prepareToPlay(float sampleRate, int samplesPerBlock) {
+    // set sample rate, delay times
+ 
+    
+//    fbcf1.prepareToPlay(<#float sampleRate#>, <#float speed#>, <#float depth#>, <#float gain#>, <#float delayInSamples#>);
+    
+    // speed = 0.9 to 1.2
+    // depth = 5 to 15 samples
+    
 }
