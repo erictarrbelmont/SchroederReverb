@@ -9,6 +9,9 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <ReverbEffect.h>
+#include <FeedBackCombFilter.h>
+#include <AllPassFilter.h>
 
 //==============================================================================
 /**
@@ -54,6 +57,10 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    
+    ReverbEffect reverb;
+    FeedBackFilter fbcf;
+    AllPassFilter apf;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SchroederReverbAudioProcessor)
 };

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="lDNP5u" name="SchroederReverb" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" displaySplashScreen="1">
   <MAINGROUP id="Ccyu4L" name="SchroederReverb">
     <GROUP id="{73F5421F-A49D-143D-8BB0-46F48404D06F}" name="Source">
       <FILE id="SEXRdx" name="PluginProcessor.cpp" compile="1" resource="0"
