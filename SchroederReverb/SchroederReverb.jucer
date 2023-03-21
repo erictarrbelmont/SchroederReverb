@@ -4,6 +4,9 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" displaySplashScreen="1">
   <MAINGROUP id="Ccyu4L" name="SchroederReverb">
     <GROUP id="{73F5421F-A49D-143D-8BB0-46F48404D06F}" name="Source">
+      <FILE id="i3r1la" name="AllPassFilter.cpp" compile="1" resource="0"
+            file="Source/AllPassFilter.cpp"/>
+      <FILE id="DZDlVi" name="AllPassFilter.h" compile="0" resource="0" file="Source/AllPassFilter.h"/>
       <FILE id="OAFMaw" name="FeedBackCombFilter.cpp" compile="1" resource="0"
             file="Source/FeedBackCombFilter.cpp"/>
       <FILE id="FJKkSK" name="FeedBackCombFilter.h" compile="0" resource="0"
