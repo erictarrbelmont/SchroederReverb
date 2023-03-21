@@ -16,6 +16,10 @@
       <FILE id="dcQQOw" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="osr7ei" name="AudioEffect.cpp" compile="1" resource="0" file="Source/AudioEffect.cpp"/>
       <FILE id="GIIidD" name="AudioEffect.h" compile="0" resource="0" file="Source/AudioEffect.h"/>
+      <FILE id="av0h3f" name="FractionalDelay.cpp" compile="1" resource="0"
+            file="Source/FractionalDelay.cpp"/>
+      <FILE id="CIq1lI" name="FractionalDelay.hpp" compile="0" resource="0"
+            file="Source/FractionalDelay.hpp"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
