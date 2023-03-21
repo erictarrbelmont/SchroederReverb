@@ -21,9 +21,9 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     // Decay Time Knob
     timeKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     timeKnob.setBounds(25,50,175,175);
-    timeKnob.setRange(0.0,1.0,0.01);
-    timeKnob.setValue(0.5);
-    timeKnob.setTextValueSuffix(" Seconds");
+    timeKnob.setRange(0.0,100.0,1.0);
+    timeKnob.setValue(50.0);
+    timeKnob.setTextValueSuffix(" %");
     timeKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
     timeKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::red);
     timeKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
@@ -127,7 +127,7 @@ void SchroederReverbAudioProcessorEditor::sliderValueChanged(juce::Slider* slide
 {
     if (slider == &timeKnob)
     {
-        audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 1
+        audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 100
     }
     if (slider == &diffKnob)
     {
