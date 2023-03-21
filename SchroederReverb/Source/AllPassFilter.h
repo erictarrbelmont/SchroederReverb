@@ -20,7 +20,13 @@ public:
     
     float setDiffusion(float diffusion);
     
-    float setDelaySamples(float delayMs);
+    void setDelaySamples(int delaySamples);
+    
+    void prepareToPlay(float Fs);
+    
+    void setSpeed(float speed);
+    
+    void setDepth(float depth);
     
     //void procesBlock(juce::AudioBuffer<float> &buffer);
     
@@ -28,8 +34,8 @@ private:
     
     FractionalDelay fracDelay;
     float Fs;
-    float numSamples;
-    float delayMs;
+    //2float numSamples;
+    int delaySamples;
     float diffusion;
     float delay1;
     float delay2;
