@@ -10,18 +10,11 @@
 
 #include "FeedBackCombFilter.h"
 
-FeedBackCombFilter::FeedBackCombFilter(float speed, float depth, float gain, float delayInSamples) :
-    delay.setSpeed(speed),
-    delay.setDepth(depth),
-    this->feedbackLevel = gain,
-    delay.setDelaySamples(delayInSamples),
-    buffer(1, 1),
-    bufferIndex(0),
-    bufferLength(0),
-    delayTime(0.0f),
-    feedbackLevel(0.0f),
-    sampleRate(44100.0)
-{
+FeedBackCombFilter::FeedBackCombFilter(float delayInSample, float feedbackLevel, float speed, float depth){
+        delay.setDelaySamples(delayInSample);
+        delay.setSpeed(speed);
+        delay.setDepth(depth);
+        this->feedbackLevel = feedbackLevel;
 }
 
 FeedBackCombFilter::~FeedBackCombFilter()
@@ -33,19 +26,11 @@ void FeedBackCombFilter::prepareToPlay(float sampleRate)
     delay.setFs(sampleRate);
 }
 
-
-
-
-
 float FeedBackCombFilter::processSample(float x, const int c){
-
-    
     x = delay.processSample(x, c);
-    
-
-    return 0;
+    x*= feedbackLevel;
+    return x;
 }
-
 
 void FeedBackCombFilter::processBlock(juce::AudioBuffer<float> &buffer)
 {

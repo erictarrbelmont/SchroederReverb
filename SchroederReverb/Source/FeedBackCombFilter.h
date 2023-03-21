@@ -16,7 +16,7 @@
 class FeedBackCombFilter
 {
 public:
-    FeedBackCombFilter(float speed, float depth, float gain, float delayInSamples);
+    FeedBackCombFilter(float delayInSample, float feedbackLevel, float speed, float depth);
     ~FeedBackCombFilter();
 
     void processBlock(juce::AudioBuffer<float> &buffer);
@@ -26,13 +26,7 @@ public:
 
     
 private:
-    juce::AudioBuffer<float> buffer;
-    int bufferIndex;
-    int bufferLength;
-    float delayTime;
     float feedbackLevel;
-    double sampleRate;
-    
     FractionalDelay delay;
 };
 
