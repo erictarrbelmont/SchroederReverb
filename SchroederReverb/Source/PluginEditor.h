@@ -44,7 +44,7 @@ private:
     
     juce::Label title;
     
-    juce::LookAndFeel_V3 lookAndFeelV3;
+    juce::LookAndFeel_V4 lookAndFeelV4;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SchroederReverbAudioProcessorEditor)
 };

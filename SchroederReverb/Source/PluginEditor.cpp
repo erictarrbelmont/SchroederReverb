@@ -25,12 +25,15 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     timeKnob.setValue(0.5);
     timeKnob.setTextValueSuffix(" Seconds");
     timeKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    timeKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::red);
+    timeKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
+    timeKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
     addAndMakeVisible(timeKnob);
     
     timeKnobLabel.setText("Decay Time", juce::dontSendNotification);
     timeKnobLabel.attachToComponent(&timeKnob, false);
     timeKnobLabel.setJustificationType(juce::Justification::centredTop);
-    timeKnobLabel.setFont(juce::Font("Times New Roman", 24.0, juce::Font::bold));
+    timeKnobLabel.setFont(juce::Font("Arial Black", 22.0, juce::Font::bold));
     addAndMakeVisible(timeKnobLabel);
     
     
@@ -38,15 +41,18 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     diffKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     diffKnob.setBounds(225,50,175,175);
     diffKnob.setRange(0.0,100.0,1.0);
-    diffKnob.setValue(50.0);
+    diffKnob.setValue(25.0);
     diffKnob.setTextValueSuffix(" %");
     diffKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    diffKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::orange);
+    diffKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
+    diffKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
     addAndMakeVisible(diffKnob);
     
     diffKnobLabel.setText("Diffusion", juce::dontSendNotification);
     diffKnobLabel.attachToComponent(&diffKnob, false);
     diffKnobLabel.setJustificationType(juce::Justification::centredTop);
-    diffKnobLabel.setFont(juce::Font("Times New Roman", 24.0, juce::Font::bold));
+    diffKnobLabel.setFont(juce::Font("Arial Black", 22.0, juce::Font::bold));
     addAndMakeVisible(diffKnobLabel);
     
     
@@ -57,12 +63,15 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     lowpassKnob.setValue(12000);
     lowpassKnob.setTextValueSuffix(" Hz");
     lowpassKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    lowpassKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::green);
+    lowpassKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
+    lowpassKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
     addAndMakeVisible(lowpassKnob);
     
     lowpassKnobLabel.setText("LPF", juce::dontSendNotification);
     lowpassKnobLabel.attachToComponent(&lowpassKnob, false);
     lowpassKnobLabel.setJustificationType(juce::Justification::centredTop);
-    lowpassKnobLabel.setFont(juce::Font("Times New Roman", 24.0, juce::Font::bold));
+    lowpassKnobLabel.setFont(juce::Font("Arial Black", 22.0, juce::Font::bold));
     addAndMakeVisible(lowpassKnobLabel);
     
     
@@ -73,12 +82,15 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     mixKnob.setValue(50.0);
     mixKnob.setTextValueSuffix(" %");
     mixKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    mixKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::blueviolet);
+    mixKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
+    mixKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
     addAndMakeVisible(mixKnob);
     
     mixKnobLabel.setText("Mix", juce::dontSendNotification);
     mixKnobLabel.attachToComponent(&mixKnob, false);
     mixKnobLabel.setJustificationType(juce::Justification::centredTop);
-    mixKnobLabel.setFont(juce::Font("Times New Roman", 24.0, juce::Font::bold));
+    mixKnobLabel.setFont(juce::Font("Arial Black", 22.0, juce::Font::bold));
     addAndMakeVisible(mixKnobLabel);
     
     
@@ -86,7 +98,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     title.setText("Schroeder Reverb", juce::dontSendNotification);
     title.setJustificationType(juce::Justification::centred);
     title.setBounds(288,250,250,50);
-    title.setFont(juce::Font("Times New Roman", 32.0, juce::Font::bold));
+    title.setFont(juce::Font("Arial Black", 32.0, juce::Font::bold));
     addAndMakeVisible(title);
     
 }
