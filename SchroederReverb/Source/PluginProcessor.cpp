@@ -95,6 +95,10 @@ void SchroederReverbAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    // reverb.prepareToPlay
+    // apf.prepareToPlay
+    // fbcf.prepareToPlay
+    
 }
 
 void SchroederReverbAudioProcessor::releaseResources()
@@ -141,6 +145,14 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     // this code if your algorithm always overwrites all the output channels.
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
+    
+    float decayTime;
+    float mix;
+    float diffusion;
+    float LPF;
+    
+    
+    
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
