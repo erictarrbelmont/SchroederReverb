@@ -16,27 +16,17 @@
 class FeedBackCombFilter
 {
 public:
-    FeedBackCombFilter();
+    FeedBackCombFilter(float delayInSample, float feedbackLevel, float speed, float depth);
     ~FeedBackCombFilter();
 
-    void setSampleRate(double sampleRate);
-    void setDelayTime(double delayTime);
-    void setFeedbackLevel(float feedbackLevel);
-    float process(float input);
+    void processBlock(juce::AudioBuffer<float> &buffer);
     
-    void prepareToPlay(float sampleRate, float speed, float depth, float gain, float delayInSamples);
-    
-    
-    
+    void prepareToPlay(float sampleRate);
+    float processSample(float x, const int c);
 
-private:
-    juce::AudioBuffer<float> buffer;
-    int bufferIndex;
-    int bufferLength;
-    float delayTime;
-    float feedbackLevel;
-    double sampleRate;
     
+private:
+    float feedbackLevel;
     FractionalDelay delay;
 };
 
