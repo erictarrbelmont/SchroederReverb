@@ -32,8 +32,8 @@ private:
     // access the processor object that created it.
     SchroederReverbAudioProcessor& audioProcessor;
     
-    juce::Slider timeKnob;
-    juce::Slider diffKnob;
+    juce::Slider timeKnob; // fbcf g
+    juce::Slider diffKnob; // apf g
     juce::Slider mixKnob;
     juce::Slider lowpassKnob;
     
