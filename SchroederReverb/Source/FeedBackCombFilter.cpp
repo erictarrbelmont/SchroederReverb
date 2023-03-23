@@ -10,8 +10,8 @@
 
 #include "FeedBackCombFilter.h"
 
-FeedBackCombFilter::FeedBackCombFilter(float delayInSample, float feedbackLevel, float speed, float depth){
-        delay.setDelaySamples(delayInSample);
+FeedBackCombFilter::FeedBackCombFilter(float delayInSamples, float feedbackLevel, float speed, float depth){
+        delay.setDelaySamples(delayInSamples);
         delay.setSpeed(speed);
         delay.setDepth(depth);
         this->feedbackLevel = feedbackLevel;
