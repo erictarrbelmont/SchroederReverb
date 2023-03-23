@@ -26,6 +26,7 @@ SchroederReverbAudioProcessor::SchroederReverbAudioProcessor()
 
 SchroederReverbAudioProcessor::~SchroederReverbAudioProcessor()
 {
+
 }
 
 //==============================================================================
@@ -95,9 +96,7 @@ void SchroederReverbAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    // reverb.prepareToPlay
-    // apf.prepareToPlay(sampleRate,SamplesPerBlock);
-    fbcf.prepareToPlay(sampleRate, samplesPerBlock);
+     reverb.prepareToPlay(sampleRate, samplesPerBlock);
     
     
 }
@@ -147,15 +146,8 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
     
-    float decayTime;
-    .setDecayTime(decayTime)
     
-    float mix;
-    float diffusion;
-    float LPF;
-    
-    
-    
+    int numSamples = buffer.getNumSamples();
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
@@ -165,9 +157,17 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     // interleaved by keeping the same state.
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer (channel);
+        for (int n = 0 ; n < numSamples ; ++n)
+        {
+            float x = buffer.getWritePointer(channel) [n];
+            
+            float w = reverb.processSample(x,channel);
+            float y = ((1-mix) * x) + (mix * w);
+            
+            buffer.getWritePointer(channel)[n] = y;
+        }
 
-        // ..do something to the data...
+        
     }
 }
 
@@ -203,6 +203,20 @@ void SchroederReverbAudioProcessor::setDecayTime(int decayValue)
     decayTime = decayValue;
 }
 
+void SchroederReverbAudioProcessor::setDiffusion(int diffusionValue)
+{
+    diffusion = diffusionValue;
+}
+
+void SchroederReverbAudioProcessor::setMix(int mixValue)
+{
+    mix = mixValue;
+}
+
+void SchroederReverbAudioProcessor::setLPF(int lpfValue)
+{
+    lpf = lpfValue;
+}
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()

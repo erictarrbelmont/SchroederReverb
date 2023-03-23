@@ -59,12 +59,21 @@ public:
     
     int decayTime;
     void setDecayTime(int decayValue);
+    
+    int diffusion;
+    void setDiffusion(int diffusionValue);
+    
+    int mix;
+    void setMix(int mixValue);
+    
+    int lpf;
+    void setLPF(int lpfValue);
 
 private:
     
     ReverbEffect reverb;
-    FeedBackCombFilter fbcf;
-    AllPassFilter apf;
+    //FeedBackCombFilter fbcf;
+    //AllPassFilter apf;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SchroederReverbAudioProcessor)
 };
