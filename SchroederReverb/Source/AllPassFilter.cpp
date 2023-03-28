@@ -11,8 +11,9 @@
 #include "AllPassFilter.h"
 #include "FractionalDelay.hpp"
 
+//Available set/get parameters: Fs, DelaySamples, Gain, Diffusion, Speed, Depth - Floats
 
-AllPassFilter::AllPassFilter(float speed, float depth, int delaySamples){
+AllPassFilter::AllPassFilter(float speed, float depth, float delaySamples){
     
     fracDelay.setSpeed(speed);
     
@@ -30,13 +31,13 @@ float AllPassFilter::processSample(float x, int channel) {
     
     float y = delay2[channel] + (diffusion * delay1);
     
-    y = y * gain; //gain
+    y = y * gain;
     
     return y;
     
 }
 
-void AllPassFilter::prepareToPlay(float Fs) {
+void AllPassFilter::prepareToPlay(float Fs) { //setFs
     
     this->Fs = Fs;
     fracDelay.setFs(Fs);
@@ -48,55 +49,45 @@ float AllPassFilter::getFs() {
 }
 
 
-void AllPassFilter::setDelaySamples(int delaySamples) {
-    
+void AllPassFilter::setDelaySamples(float delaySamples) {
     this-> delaySamples = delaySamples;
     fracDelay.setDelaySamples(delaySamples);
-    
 }
-
-int AllPassFilter::getDelaySamples() {
+float AllPassFilter::getDelaySamples() {
     return delaySamples;
 }
+
 
 void AllPassFilter::setGain(float gain) {
     this->gain = gain;
 }
-
 float AllPassFilter::getGain() {
     return gain;
 }
 
-void AllPassFilter::setDiffusion(float diffusion) {
-    
-    this->diffusion = diffusion;
-    
-}
 
+void AllPassFilter::setDiffusion(float diffusion) {
+    this->diffusion = diffusion;
+}
 float AllPassFilter::getDiffusion() {
     return diffusion;
 }
 
-void AllPassFilter::setSpeed(float speed) {
-    
-    fracDelay.setSpeed(speed);
-    
-}
 
+void AllPassFilter::setSpeed(float speed) {
+    fracDelay.setSpeed(speed);
+}
 float AllPassFilter::getSpeed() {
     return speed;
 }
 
-void AllPassFilter::setDepth(float depth) {
-    
-    fracDelay.setDepth(depth);
-    
-}
 
+void AllPassFilter::setDepth(float depth) {
+    fracDelay.setDepth(depth);
+}
 float AllPassFilter::getDepth() {
     return depth;
 }
-
 
 
 
