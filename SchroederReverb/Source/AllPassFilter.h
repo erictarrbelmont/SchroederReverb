@@ -16,15 +16,15 @@ class AllPassFilter{
 public:
     AllPassFilter(){};
     
-    AllPassFilter(float speed, float depth, int delaySamples);
+    AllPassFilter(float speed, float depth, float delaySamples);
     
     float processSample(float x, const int c);
     
     void setDiffusion(float diffusion);
     float getDiffusion();
     
-    void setDelaySamples(int delaySamples);
-    int getDelaySamples();
+    void setDelaySamples(float delaySamples);
+    float getDelaySamples();
     
     void prepareToPlay(float Fs);
     float getFs();
@@ -47,7 +47,7 @@ private:
     
     FractionalDelay fracDelay;
     float Fs;
-    int delaySamples;
+    float delaySamples;
     float diffusion;
     float delay1;
     float delay2[2] = {0.f};
