@@ -16,17 +16,30 @@ class AllPassFilter{
 public:
     AllPassFilter(){};
     
+    AllPassFilter(float speed, float depth, int delaySamples);
+    
     float processSample(float x, const int c);
     
-    float setDiffusion(float diffusion);
+    void setDiffusion(float diffusion);
+    float getDiffusion();
     
     void setDelaySamples(int delaySamples);
+    int getDelaySamples();
     
     void prepareToPlay(float Fs);
+    float getFs();
     
     void setSpeed(float speed);
+    float getSpeed();
     
     void setDepth(float depth);
+    float getDepth();
+    
+    void setGain(float gain);
+    float getGain();
+    
+    void setFeedbackAPF(float feedbackAPF);
+    float getFeedbackAPF();
     
     //void procesBlock(juce::AudioBuffer<float> &buffer);
     
@@ -34,11 +47,14 @@ private:
     
     FractionalDelay fracDelay;
     float Fs;
-    //2float numSamples;
     int delaySamples;
     float diffusion;
     float delay1;
-    float delay2;
+    float delay2[2] = {0.f};
     
+    float speed;
+    float depth;
+    float gain;
+    float feedbackAPF;
     
 };

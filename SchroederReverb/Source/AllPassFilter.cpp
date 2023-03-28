@@ -11,47 +11,91 @@
 #include "AllPassFilter.h"
 #include "FractionalDelay.hpp"
 
-float AllPassFilter::processSample(float x, int channel) {
-    
-    float delay1 = x + (-diffusion * delay2);
-    
-    delay2 = fracDelay.processSample(delay1, channel);
-    
-    float y = delay2 + (diffusion * delay1);
-    
-    return y;
-    
-}
 
-
-void AllPassFilter::prepareToPlay(float Fs) {
-    fracDelay.setFs(Fs);
-}
-
-
-void AllPassFilter::setDelaySamples(int delaySamples) {
+AllPassFilter::AllPassFilter(float speed, float depth, int delaySamples){
+    
+    fracDelay.setSpeed(speed);
+    
+    fracDelay.setDepth(depth);
     
     fracDelay.setDelaySamples(delaySamples);
     
 }
 
+float AllPassFilter::processSample(float x, int channel) {
+    
+    float delay1 = x + (-diffusion * delay2[channel]);
+    
+    delay2[channel] = fracDelay.processSample(delay1, channel);
+    
+    float y = delay2[channel] + (diffusion * delay1);
+    
+    y = y * gain; //gain
+    
+    return y;
+    
+}
 
-float AllPassFilter::setDiffusion(float diffusion) {
+void AllPassFilter::prepareToPlay(float Fs) {
+    
+    this->Fs = Fs;
+    fracDelay.setFs(Fs);
+    
+}
+
+float AllPassFilter::getFs() {
+    return Fs;
+}
+
+
+void AllPassFilter::setDelaySamples(int delaySamples) {
+    
+    this-> delaySamples = delaySamples;
+    fracDelay.setDelaySamples(delaySamples);
+    
+}
+
+int AllPassFilter::getDelaySamples() {
+    return delaySamples;
+}
+
+void AllPassFilter::setGain(float gain) {
+    this->gain = gain;
+}
+
+float AllPassFilter::getGain() {
+    return gain;
+}
+
+void AllPassFilter::setDiffusion(float diffusion) {
     
     this->diffusion = diffusion;
     
+}
+
+float AllPassFilter::getDiffusion() {
     return diffusion;
 }
 
 void AllPassFilter::setSpeed(float speed) {
+    
     fracDelay.setSpeed(speed);
+    
+}
+
+float AllPassFilter::getSpeed() {
+    return speed;
 }
 
 void AllPassFilter::setDepth(float depth) {
+    
     fracDelay.setDepth(depth);
+    
 }
 
-
+float AllPassFilter::getDepth() {
+    return depth;
+}
 
 
 
