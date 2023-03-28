@@ -15,7 +15,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (825, 300);
+    setSize (825, 280);
     
     
     // Decay Time Knob
@@ -25,6 +25,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     timeKnob.setValue(50.0);
     timeKnob.setTextValueSuffix(" %");
     timeKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    timeKnob.setColour(juce::Slider::ColourIds::textBoxOutlineColourId, juce::Colours::black.brighter(0.1));
     timeKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::red);
     timeKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
     timeKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
@@ -44,6 +45,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     diffKnob.setValue(25.0);
     diffKnob.setTextValueSuffix(" %");
     diffKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    diffKnob.setColour(juce::Slider::ColourIds::textBoxOutlineColourId, juce::Colours::black.brighter(0.1));
     diffKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::orange);
     diffKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
     diffKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
@@ -60,9 +62,10 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     lowpassKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     lowpassKnob.setBounds(425,50,175,175);
     lowpassKnob.setRange(1000.0,20000.0,1.0);
-    lowpassKnob.setValue(12000);
+    lowpassKnob.setValue(8000);
     lowpassKnob.setTextValueSuffix(" Hz");
     lowpassKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    lowpassKnob.setColour(juce::Slider::ColourIds::textBoxOutlineColourId, juce::Colours::black.brighter(0.1));
     lowpassKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::green);
     lowpassKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
     lowpassKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
@@ -82,6 +85,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     mixKnob.setValue(50.0);
     mixKnob.setTextValueSuffix(" %");
     mixKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    mixKnob.setColour(juce::Slider::ColourIds::textBoxOutlineColourId, juce::Colours::black.brighter(0.1));
     mixKnob.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::blueviolet);
     mixKnob.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::black);
     mixKnob.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::silver.darker(0.8));
@@ -97,7 +101,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     // Plugin Title
     title.setText("Schroeder Reverb", juce::dontSendNotification);
     title.setJustificationType(juce::Justification::centred);
-    title.setBounds(288,250,250,50);
+    title.setBounds(288,230,250,50);
     title.setFont(juce::Font("Arial Black", 32.0, juce::Font::bold));
     addAndMakeVisible(title);
     
