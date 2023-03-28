@@ -24,6 +24,7 @@
 class FeedBackCombFilter
 {
 public:
+    
     /**
      * Constructor method that creates a new instance of the FeedBackCombFilter class.
      * @param delayInSamples The delay in samples (i.e. how long the delay line should be).
