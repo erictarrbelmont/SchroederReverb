@@ -10,28 +10,44 @@
 
 #include "ReverbEffect.h"
 
-float ReverbEffect::processSample(float x, const int c) {
+ReverbEffect::ReverbEffect() {
     // Set all parameters for all blocks
+    FeedBackCombFilter fbcf1(DELAY_SAMPLES_FBCF1, feedbackLevel, speedFBCF1, MOD_DEPTH);
+    FeedBackCombFilter fbcf2(DELAY_SAMPLES_FBCF2, feedbackLevel, speedFBCF2, MOD_DEPTH);
+    FeedBackCombFilter fbcf3(DELAY_SAMPLES_FBCF3, feedbackLevel, speedFBCF3, MOD_DEPTH);
+    FeedBackCombFilter fbcf4(DELAY_SAMPLES_FBCF4, feedbackLevel, speedFBCF4, MOD_DEPTH);
+    // APF TODO
+}
+
+float ReverbEffect::processSample(float x, const int c) {
     // Pass the sample to each of the FBCF blocks (makes 4 copies of the sample)
     // Get outputs from those blocks and sum them
     // Run thru 1 APF and get the result
     // Run that through another APF and get the result
     // return that
     
-    // TODO
-    return 0.f;
+    float fbcfOut = fbcf1.processSample(x, c)
+        + fbcf2.processSample(x, c)
+        + fbcf3.processSample(x, c)
+        + fbcf4.processSample(x, c);
+    
+    float apf1Out = apf1.processSample(fbcfOut, c);
+    float y = apf2.processSample(apf1Out, c);
+    
+    return y;
     
     
 }
 
-
-void ReverbEffect::prepareToPlay(float sampleRate, int samplesPerBlock) {
-    // set sample rate, delay times
- 
-    
-//    fbcf1.prepareToPlay(<#float sampleRate#>, <#float speed#>, <#float depth#>, <#float gain#>, <#float delayInSamples#>);
-    
-    // speed = 0.9 to 1.2
-    // depth = 5 to 15 samples
-    
+void ReverbEffect::setDiffusion(float diffusion) {
+    apf1.setDiffusion(diffusion);
+    apf2.setDiffusion(diffusion);
 }
+
+void ReverbEffect::setTime(float gain) {
+    fbcf1.setFeedbackFBCF(gain);
+    fbcf2.setFeedbackFBCF(gain);
+    fbcf3.setFeedbackFBCF(gain);
+    fbcf4.setFeedbackFBCF(gain);
+}
+
