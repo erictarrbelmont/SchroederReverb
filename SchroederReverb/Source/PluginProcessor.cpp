@@ -198,22 +198,22 @@ void SchroederReverbAudioProcessor::setStateInformation (const void* data, int s
     
 }
 
-void SchroederReverbAudioProcessor::setDecayTime(int decayValue)
+void SchroederReverbAudioProcessor::setDecayTime(float decayValue)
 {
-    decayTime = decayValue;
+    reverb.setTime(decayValue/100);
 }
 
-void SchroederReverbAudioProcessor::setDiffusion(int diffusionValue)
+void SchroederReverbAudioProcessor::setDiffusion(float diffusionValue)
 {
-    diffusion = diffusionValue;
+    reverb.setDiffusion(diffusionValue/100);
 }
 
-void SchroederReverbAudioProcessor::setMix(int mixValue)
+void SchroederReverbAudioProcessor::setMix(float mixValue)
 {
-    mix = mixValue;
+    mix = mixValue/100;
 }
 
-void SchroederReverbAudioProcessor::setLPF(int lpfValue)
+void SchroederReverbAudioProcessor::setLPF(float lpfValue)
 {
     lpf = lpfValue;
 }

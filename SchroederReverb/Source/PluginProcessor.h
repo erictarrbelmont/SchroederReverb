@@ -58,22 +58,21 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     int decayTime;
-    void setDecayTime(int decayValue);
+    void setDecayTime(float decayValue);
     
     int diffusion;
-    void setDiffusion(int diffusionValue);
+    void setDiffusion(float diffusionValue);
     
     int mix;
-    void setMix(int mixValue);
+    void setMix(float mixValue);
     
     int lpf;
-    void setLPF(int lpfValue);
+    void setLPF(float lpfValue);
 
 private:
     
     ReverbEffect reverb;
-    //FeedBackCombFilter fbcf;
-    //AllPassFilter apf;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SchroederReverbAudioProcessor)
 };
