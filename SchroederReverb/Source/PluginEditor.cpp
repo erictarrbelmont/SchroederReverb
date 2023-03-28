@@ -15,8 +15,6 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (825, 280);
-    
     
     // Decay Time Knob
     timeKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
@@ -105,6 +103,15 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     title.setFont(juce::Font("Arial Black", 32.0, juce::Font::bold));
     addAndMakeVisible(title);
     
+    timeKnob.resized();
+    diffKnob.resized();
+    lowpassKnob.resized();
+    mixKnob.resized();
+    
+    setResizable(true, true);
+    setResizeLimits(412, 140, 1650, 560);
+    setSize (825, 280);
+    
 }
 
 SchroederReverbAudioProcessorEditor::~SchroederReverbAudioProcessorEditor()
@@ -119,6 +126,40 @@ void SchroederReverbAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.fillAll(juce::Colours::black.brighter(0.1));
     
+    // Define plugin bounds
+    auto bounds = getLocalBounds();
+    auto width = bounds.getWidth();
+    auto height = bounds.getHeight();
+    
+    // Knob bounds
+    auto knobWidth = width * 175/825;
+    auto knobHeight = height * 175/280;
+    
+    auto timeKnobX = width * 25/825;
+    auto timeKnobY = height * 50/280;
+    
+    auto diffKnobX = width * 225/825;
+    auto diffKnobY = height * 50/280;
+    
+    auto lowpassKnobX = width * 425/825;
+    auto lowpassKnobY = height * 50/280;
+    
+    auto mixKnobX = width * 625/825;
+    auto mixKnobY = height * 50/280;
+    
+    // Title bounds
+    auto titleWidth = width * 250/825;
+    auto titleHeight = height * 50/280;
+    
+    auto titleX = width * 288/825;
+    auto titleY = height * 230/280;
+    
+    timeKnob.setBounds(timeKnobX,timeKnobY,knobWidth,knobWidth);
+    diffKnob.setBounds(diffKnobX,diffKnobY,knobWidth,knobWidth);
+    lowpassKnob.setBounds(lowpassKnobX,lowpassKnobY,knobWidth,knobWidth);
+    mixKnob.setBounds(mixKnobX,mixKnobY,knobWidth,knobWidth);
+    
+    title.setBounds(titleX,titleY,titleWidth,titleHeight);
 }
 
 void SchroederReverbAudioProcessorEditor::resized()
@@ -131,7 +172,7 @@ void SchroederReverbAudioProcessorEditor::sliderValueChanged(juce::Slider* slide
 {
     if (slider == &timeKnob)
     {
-        audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 1
+        audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 100
     }
     if (slider == &diffKnob)
     {
