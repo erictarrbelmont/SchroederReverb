@@ -17,6 +17,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     // editor's size to whatever you need it to be.
     
     // Decay Time Knob
+    timeKnob.addListener(this);
     timeKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     timeKnob.setBounds(25,50,175,175);
     timeKnob.setRange(0.0,100.0,1.0);
@@ -37,6 +38,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     
     
     // Diffusion Knob
+    diffKnob.addListener(this);
     diffKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     diffKnob.setBounds(225,50,175,175);
     diffKnob.setRange(0.0,100.0,1.0);
@@ -57,10 +59,11 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     
     
     // Lowpass Filter Knob
+    lowpassKnob.addListener(this);
     lowpassKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     lowpassKnob.setBounds(425,50,175,175);
     lowpassKnob.setRange(1000.0,20000.0,1.0);
-    lowpassKnob.setValue(8000);
+    lowpassKnob.setValue(8000.f);
     lowpassKnob.setTextValueSuffix(" Hz");
     lowpassKnob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
     lowpassKnob.setColour(juce::Slider::ColourIds::textBoxOutlineColourId, juce::Colours::black.brighter(0.1));
@@ -77,6 +80,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     
     
     // Mix Knob
+    mixKnob.addListener(this);
     mixKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     mixKnob.setBounds(625,50,175,175);
     mixKnob.setRange(0.0,100.0,1.0);

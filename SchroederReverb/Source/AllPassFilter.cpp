@@ -31,7 +31,6 @@ float AllPassFilter::processSample(float x, int channel) {
     
     float y = delay2[channel] + (diffusion * delay1);
     
-    y = y * gain;
     
     return y;
     

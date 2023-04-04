@@ -96,8 +96,8 @@ void SchroederReverbAudioProcessor::prepareToPlay (double sampleRate, int sample
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-     reverb.prepareToPlay(sampleRate, samplesPerBlock);
-    
+    reverb.prepareToPlay(sampleRate, samplesPerBlock);
+    filter.setFs(sampleRate);
     
 }
 
@@ -162,6 +162,7 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
             float x = buffer.getWritePointer(channel) [n];
             
             float w = reverb.processSample(x,channel);
+            w = filter.processSample(w, channel);
             float y = ((1-mix) * x) + (mix * w);
             
             buffer.getWritePointer(channel)[n] = y;
@@ -200,22 +201,23 @@ void SchroederReverbAudioProcessor::setStateInformation (const void* data, int s
 
 void SchroederReverbAudioProcessor::setDecayTime(float decayValue)
 {
-    reverb.setTime(decayValue/100);
+    reverb.setTime(decayValue/100.f);
 }
 
 void SchroederReverbAudioProcessor::setDiffusion(float diffusionValue)
 {
-    reverb.setDiffusion(diffusionValue/100);
+    reverb.setDiffusion(diffusionValue/100.f);
 }
 
 void SchroederReverbAudioProcessor::setMix(float mixValue)
 {
-    mix = mixValue/100;
+    mix = mixValue/100.f;
 }
 
 void SchroederReverbAudioProcessor::setLPF(float lpfValue)
 {
     lpf = lpfValue;
+    filter.setFreq(lpf);
 }
 //==============================================================================
 // This creates new instances of the plugin..
