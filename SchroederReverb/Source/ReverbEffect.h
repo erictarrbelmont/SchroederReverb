@@ -20,7 +20,7 @@ public:
     /**
      * Default constructor
      */
-    ReverbEffect();
+    //ReverbEffect() {} ;
     
     /**
      * Destructor
@@ -60,7 +60,7 @@ private:
     const float DELAY_SAMPLES_APF1 = 240;
     const float DELAY_SAMPLES_APF2 = 82;
     
-    const float MOD_DEPTH = 10; // from 1 to 10
+    const float MOD_DEPTH = 3; // from 1 to 10
     
     float feedbackLevel = 0.7; // 0 to 1
     

@@ -13,6 +13,7 @@
 #include "FeedBackCombFilter.h"
 #include "AllPassFilter.h"
 #include "FractionalDelay.hpp"
+#include "Biquad.h"
 
 //==============================================================================
 /**
@@ -57,21 +58,22 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    int decayTime;
+    float decayTime;
     void setDecayTime(float decayValue);
     
-    int diffusion;
+    float diffusion;
     void setDiffusion(float diffusionValue);
     
-    int mix;
+    float mix;
     void setMix(float mixValue);
     
-    int lpf;
+    float lpf;
     void setLPF(float lpfValue);
 
 private:
     
     ReverbEffect reverb;
+    Biquad filter {Biquad::FilterType::LPF, 0.7071f};
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SchroederReverbAudioProcessor)

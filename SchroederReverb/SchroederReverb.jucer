@@ -15,6 +15,8 @@
             file="Source/FractionalDelay.cpp"/>
       <FILE id="aXt7Vv" name="FractionalDelay.hpp" compile="0" resource="0"
             file="Source/FractionalDelay.hpp"/>
+      <FILE id="NY9TK3" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
+      <FILE id="J6ie65" name="Biquad.h" compile="0" resource="0" file="Source/Biquad.h"/>
       <FILE id="N2MdQC" name="ReverbEffect.cpp" compile="1" resource="0"
             file="Source/ReverbEffect.cpp"/>
       <FILE id="nBY2ak" name="ReverbEffect.h" compile="0" resource="0" file="Source/ReverbEffect.h"/>
