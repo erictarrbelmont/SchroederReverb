@@ -19,15 +19,33 @@ SchroederReverbAudioProcessor::SchroederReverbAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), state(*this, nullptr, "ReverbParams", createParameterLayout())
 #endif
 {
 }
 
 SchroederReverbAudioProcessor::~SchroederReverbAudioProcessor()
 {
-
+    
 }
+
+juce::AudioProcessorValueTreeState::ParameterLayout SchroederReverbAudioProcessor::createParameterLayout(){
+    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+    
+    params.push_back( std::make_unique<juce::AudioParameterFloat> ("mixValue", //const String& parameterID,
+                                                                    "Mix" , //const String& parameterName,
+                                                                   juce::NormalisableRange<float> (0.f, 1.f),
+                                                                   0.f //float defaultValue
+                                                                   ) );
+    
+    
+    return {params.begin() , params.end()};
+    // Smart pointers
+    //std::unique_ptr<ReverbEffect> myEffect;
+    
+}
+
+
 
 //==============================================================================
 const juce::String SchroederReverbAudioProcessor::getName() const
@@ -99,6 +117,11 @@ void SchroederReverbAudioProcessor::prepareToPlay (double sampleRate, int sample
     reverb.prepareToPlay(sampleRate, samplesPerBlock);
     filter.setFs(sampleRate);
     
+    float tr = 0.1; // 100 ms response time for smoothing
+    alpha = std::exp(-log(9.f)/(sampleRate * tr));
+    
+    sMix.reset(sampleRate,tr);
+    sFreq.reset(sampleRate,tr);
 }
 
 void SchroederReverbAudioProcessor::releaseResources()
@@ -155,15 +178,33 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    for (int n = 0 ; n < numSamples ; ++n)
     {
-        for (int n = 0 ; n < numSamples ; ++n)
+        float val = sMix.getNextValue();
+        
+//        float freq = sFreq.getNextValue();
+        
+        if (count < 8)
+            count++;
+        else
         {
+            count = 0;
+            float freq = sFreq.skip(8);
+            filter.setFreq(freq);
+        }
+        
+        for (int channel = 0; channel < totalNumInputChannels; ++channel)
+        {
+        
             float x = buffer.getWritePointer(channel) [n];
             
             float w = reverb.processSample(x,channel);
             w = filter.processSample(w, channel);
-            float y = ((1-mix) * x) + (mix * w);
+            
+            //smoothMix[channel] = alpha * smoothMix[channel] + (1.f - alpha) * mix;
+            //float y = ((1.f-smoothMix[channel]) * x) + (smoothMix[channel] * w);
+            
+            float y = ((1.f - val) * x) + (val * w);
             
             buffer.getWritePointer(channel)[n] = y;
         }
@@ -212,12 +253,15 @@ void SchroederReverbAudioProcessor::setDiffusion(float diffusionValue)
 void SchroederReverbAudioProcessor::setMix(float mixValue)
 {
     mix = mixValue/100.f;
+    
+    sMix.setTargetValue(mixValue/100.f);
 }
 
 void SchroederReverbAudioProcessor::setLPF(float lpfValue)
 {
     lpf = lpfValue;
-    filter.setFreq(lpf);
+    //filter.setFreq(lpf);
+    sFreq.setTargetValue(lpfValue);
 }
 //==============================================================================
 // This creates new instances of the plugin..

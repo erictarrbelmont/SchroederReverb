@@ -65,6 +65,8 @@ public:
     void setDiffusion(float diffusionValue);
     
     float mix;
+    float smoothMix[2] = {0.f};
+    float alpha = 0.999f;
     void setMix(float mixValue);
     
     float lpf;
@@ -74,6 +76,16 @@ private:
     
     ReverbEffect reverb;
     Biquad filter {Biquad::FilterType::LPF, 0.7071f};
+    
+    juce::SmoothedValue<float,juce::ValueSmoothingTypes::Linear> sMix {0.f};
+    juce::SmoothedValue<float,juce::ValueSmoothingTypes::Multiplicative> sFreq {8000.f};
+    
+    int count = 0;
+    
+    juce::AudioProcessorValueTreeState state;
+    
+    // Function to fill value tree
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SchroederReverbAudioProcessor)
