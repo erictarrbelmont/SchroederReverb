@@ -17,7 +17,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     // editor's size to whatever you need it to be.
     
     // Decay Time Knob
-    timeKnob.addListener(this);
+    //timeKnob.addListener(this);
     timeKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     timeKnob.setBounds(25,50,175,175);
     timeKnob.setRange(0.0,100.0,1.0);
@@ -38,7 +38,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     
     
     // Diffusion Knob
-    diffKnob.addListener(this);
+    //diffKnob.addListener(this);
     diffKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     diffKnob.setBounds(225,50,175,175);
     diffKnob.setRange(0.0,100.0,1.0);
@@ -59,7 +59,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     
     
     // Lowpass Filter Knob
-    lowpassKnob.addListener(this);
+    //lowpassKnob.addListener(this);
     lowpassKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     lowpassKnob.setBounds(425,50,175,175);
     lowpassKnob.setRange(1000.0,20000.0,1.0);
@@ -80,7 +80,7 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     
     
     // Mix Knob
-    mixKnob.addListener(this);
+    //mixKnob.addListener(this);
     mixKnob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     mixKnob.setBounds(625,50,175,175);
     mixKnob.setRange(0.0,100.0,1.0);
@@ -115,6 +115,12 @@ SchroederReverbAudioProcessorEditor::SchroederReverbAudioProcessorEditor (Schroe
     setResizable(true, true);
     setResizeLimits(412, 140, 1650, 560);
     setSize (825, 280);
+    
+    
+    sliderAttachment.emplace_back(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.state,"mixValue",mixKnob) );
+    sliderAttachment.emplace_back(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.state,"timeValue",timeKnob) );
+    sliderAttachment.emplace_back(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.state,"diffValue",diffKnob) );
+    sliderAttachment.emplace_back(new juce::AudioProcessorValueTreeState::SliderAttachment(audioProcessor.state,"lpfValue",lowpassKnob) );
     
 }
 
@@ -172,22 +178,22 @@ void SchroederReverbAudioProcessorEditor::resized()
     // subcomponents in your editor..
 }
 
-void SchroederReverbAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
-{
-    if (slider == &timeKnob)
-    {
-        audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 100
-    }
-    if (slider == &diffKnob)
-    {
-        audioProcessor.setDiffusion(diffKnob.getValue()); // range from 0 to 100
-    }
-    if (slider == &mixKnob)
-    {
-        audioProcessor.setMix(mixKnob.getValue()); // range from 0 to 100
-    }
-    if (slider == &lowpassKnob)
-    {
-        audioProcessor.setLPF(lowpassKnob.getValue()); // range from 1000 to 20000
-    }
-}
+//void SchroederReverbAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
+//{
+//    if (slider == &timeKnob)
+//    {
+//        audioProcessor.setDecayTime(timeKnob.getValue()); // range from 0 to 100
+//    }
+//    if (slider == &diffKnob)
+//    {
+//        audioProcessor.setDiffusion(diffKnob.getValue()); // range from 0 to 100
+//    }
+//    if (slider == &mixKnob)
+//    {
+//        audioProcessor.setMix(mixKnob.getValue()); // range from 0 to 100
+//    }
+//    if (slider == &lowpassKnob)
+//    {
+//        audioProcessor.setLPF(lowpassKnob.getValue()); // range from 1000 to 20000
+//    }
+//}

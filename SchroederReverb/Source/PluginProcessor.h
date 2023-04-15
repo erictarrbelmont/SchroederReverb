@@ -81,7 +81,8 @@ private:
     juce::SmoothedValue<float,juce::ValueSmoothingTypes::Multiplicative> sFreq {8000.f};
     
     int count = 0;
-    
+ 
+public:
     juce::AudioProcessorValueTreeState state;
     
     // Function to fill value tree

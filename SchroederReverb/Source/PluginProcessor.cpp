@@ -34,10 +34,27 @@ juce::AudioProcessorValueTreeState::ParameterLayout SchroederReverbAudioProcesso
     
     params.push_back( std::make_unique<juce::AudioParameterFloat> ("mixValue", //const String& parameterID,
                                                                     "Mix" , //const String& parameterName,
-                                                                   juce::NormalisableRange<float> (0.f, 1.f),
-                                                                   0.f //float defaultValue
+                                                                   juce::NormalisableRange<float> (0.f, 100.f),
+                                                                   50.f //float defaultValue
                                                                    ) );
     
+    params.push_back( std::make_unique<juce::AudioParameterFloat> ("timeValue", //const String& parameterID,
+                                                                    "Time" , //const String& parameterName,
+                                                                   juce::NormalisableRange<float> (0.f, 100.f),
+                                                                   50.f //float defaultValue
+                                                                   ) );
+    
+    params.push_back( std::make_unique<juce::AudioParameterFloat> ("diffValue", //const String& parameterID,
+                                                                    "Diffusion" , //const String& parameterName,
+                                                                   juce::NormalisableRange<float> (0.f, 100.f),
+                                                                   10.f //float defaultValue
+                                                                   ) );
+    
+    params.push_back( std::make_unique<juce::AudioParameterFloat> ("lpfValue", //const String& parameterID,
+                                                                    "Freq" , //const String& parameterName,
+                                                                   juce::NormalisableRange<float> (1000.f, 20000.f),
+                                                                   8000.f //float defaultValue
+                                                                   ) );
     
     return {params.begin() , params.end()};
     // Smart pointers
@@ -172,6 +189,19 @@ void SchroederReverbAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     
     int numSamples = buffer.getNumSamples();
 
+    
+    float mixValue = *state.getRawParameterValue("mixValue");
+    sMix.setTargetValue(mixValue/100.f);
+    
+    float lpfValue = *state.getRawParameterValue("lpfValue");
+    sFreq.setTargetValue(lpfValue);
+    
+    float diffValue = *state.getRawParameterValue("diffValue");
+    setDiffusion(diffValue);
+    
+    float timeValue = *state.getRawParameterValue("timeValue");
+    setDecayTime(timeValue);
+    
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
     // Make sure to reset the state if your inner loop is processing
@@ -230,13 +260,21 @@ void SchroederReverbAudioProcessor::getStateInformation (juce::MemoryBlock& dest
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    
+    auto currentState = state.copyState();
+    std::unique_ptr<juce::XmlElement> xml (currentState.createXml());
+    copyXmlToBinary(*xml, destData);
 }
 
 void SchroederReverbAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    
+    std::unique_ptr<juce::XmlElement> xml (getXmlFromBinary(data, sizeInBytes));
+    if (xml && xml->hasTagName(state.state.getType())){
+        state.replaceState(juce::ValueTree::fromXml(*xml));
+    }
+        
     
 }
 
